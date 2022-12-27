@@ -1,35 +1,35 @@
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 public class LaptopStorage {
 
-    HashSet<Laptop> storage = new HashSet<>();
+    static HashSet<Laptop> storage = new HashSet<>();
+    static TreeSet<String> availableBrands = new TreeSet<>();
+    static TreeSet<String> availableVideoCard = new TreeSet<>();
+    static TreeSet<String> availableCPU = new TreeSet<>();
+    static TreeSet<Integer> availableRam = new TreeSet<>();
+    static TreeSet<Integer> availableHardDriveMemory = new TreeSet<>();
+    static TreeSet<String> availableOS = new TreeSet<>();
+    static TreeSet<String> availableColors = new TreeSet<>();
+    static TreeSet<Double> availablePrices = new TreeSet<>();
 
     public void addLaptops(List<Laptop> laptopList) {
-        this.storage.addAll(laptopList);
+        storage.addAll(laptopList);
     }
 
-    public void showUserChoice(Laptop laptop) {
-        System.out.println("Brand: " + laptop.getBrand() +
-                ", RAM: " + laptop.getRamMemory() +
-                " GB, Memory: " + laptop.getHardDriveCap() +
-                " GB, OS: " + laptop.getOpSystem() +
-                ", color: " + laptop.getColor());
-    }
-    public void showStorage() {
-        System.out.println("Доступные ноутбуки: ");
+    public static void addSpecs() {
+        Views.printAvailable();
         for (Laptop laptop : storage) {
-            showUserChoice(laptop);
+            availableBrands.add(laptop.getBrand());
+            availableRam.add(laptop.getRamMemory());
+            availableHardDriveMemory.add(laptop.getHardDriveCap());
+            availableOS.add(laptop.getOS());
+            availableColors.add(laptop.getColor());
+            availablePrices.add(laptop.getPrice());
         }
     }
-
-    public void showBrand(String brand) {
-        System.out.println("Доступные ноутбуки: ");
-        for (Laptop laptop : storage) {
-            if (laptop.getBrand().equals(brand)) {
-                showUserChoice(laptop);
-            }
-        }
-    }
-
 }
+
+
+
